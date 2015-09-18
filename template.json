@@ -1,4 +1,14 @@
 {
+  "variables": {
+    "vm_name": "Drupsible",
+    "debian_version": "8.2.0",
+    "debian_arch": "amd64",
+    "atlas_token": "{{env `ATLAS_TOKEN`}}",
+    "atlas_username": "{{env `ATLAS_USERNAME`}}",
+    "atlas_name": "drupsible",
+    "drupsible_role": "controller",
+    "version": "0.9.1"
+  },
   "provisioners": [
     {
       "type": "shell",
@@ -65,6 +75,29 @@
           "1"
         ]
       ]
+    }
+  ],
+  "push": {
+      "name": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "token": "{{user `atlas_name`}}",
+      "vcs": true
+  },
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "compression_level": 9,
+      "output": "vagrant/drupsible/debian-{{ user `debian_version` }}-{{ user `drupsible_role` }}-{{.Provider}}.box"
+    },
+    {
+      "type": "atlas",
+      "only": ["virtualbox-iso"],
+      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "created_at": "{{timestamp}}",
+        "version": "{{user `version`}}",
+        "provider": "virtualbox"
+      }
     }
   ]
 }
