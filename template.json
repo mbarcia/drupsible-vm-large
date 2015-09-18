@@ -12,7 +12,7 @@
       ],
       "override": {
         "virtualbox-iso": {
-          "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+          "execute_command": "echo 'vagrant'|{{.Vars}} sudo -E -S bash '{{.Path}}'"
         }
       }
     }
@@ -48,7 +48,6 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "headless" : false,
-      "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
@@ -57,7 +56,7 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "384"
+          "512"
         ],
         [
           "modifyvm",
@@ -65,7 +64,7 @@
           "--cpus",
           "1"
         ]
-      ]
+      ],
     }
   ]
 }
