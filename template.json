@@ -57,6 +57,7 @@
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
       "headless" : false,
       "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
@@ -83,10 +84,11 @@
       "vcs": true
   },
   "post-processors": [
-    {
+    [{
       "type": "vagrant",
+      "only": ["virtualbox-iso"],
       "compression_level": 9,
-      "output": "vagrant/drupsible/debian-{{ user `debian_version` }}-{{ user `drupsible_role` }}-{{.Provider}}.box"
+      "keep_input_artifact": true
     },
     {
       "type": "atlas",
@@ -98,6 +100,6 @@
         "version": "{{user `version`}}",
         "provider": "virtualbox"
       }
-    }
+    }]
   ]
 }
