@@ -5,7 +5,7 @@
     "debian_arch": "amd64",
     "atlas_token": "{{env `ATLAS_TOKEN`}}",
     "atlas_username": "{{env `ATLAS_USERNAME`}}",
-    "atlas_name": "drupsible",
+    "atlas_name": "drupsible-large",
     "drupsible_role": "controller",
     "version": "0.9.4"
   },
