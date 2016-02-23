@@ -48,7 +48,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 40560,
+      "disk_size": 30720,
       "guest_os_type": "Debian_64",
       "http_directory": "http",
       "iso_checksum": "070db3644c39374fdc87fd3de51388dcc0e05b866eaf37f2193d1818f0128e938c42e4eb9f1de555741c143a51edee07903a33271fca2696a771e4ae5c868277",
